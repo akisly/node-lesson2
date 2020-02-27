@@ -1,70 +1,66 @@
 const UserModel = require('./model');
 
+/**
+ * @exports
+ * @method findAll
+ * @param {}
+ * @summary get list of all users
+ * @returns Promise<UserModel[]>
+ */
+function findAll() {
+    return UserModel.find({}).exec();
+}
+
+/**
+ * @exports
+ * @method findById
+ * @param {string} id
+ * @summary get a user
+ * @returns {Promise<UserModel>}
+ */
+function findById(id) {
+    return UserModel.findById(id).exec();
+}
+
+/**
+ * @exports
+ * @method create
+ * @param {object} profile
+ * @summary create a new user
+ * @returns {Promise<UserModel>}
+ */
+function create(profile) {
+    return UserModel.create(profile);
+}
+
+/**
+ * Find a user by id and update his profile
+ * @exports
+ * @method updateById
+ * @param {string} _id
+ * @param {object} newProfile
+ * @summary update a user's profile
+ * @returns {Promise<void>}
+ */
+function updateById(_id, newProfile) {
+    return UserModel.updateOne({ _id }, newProfile).exec();
+}
+
+/**
+ * @exports
+ * @method deleteById
+ * @param {string} _id
+ * @summary delete a user from database
+ * @returns {Promise<void>}
+ */
+function deleteById(_id) {
+    return UserModel.deleteOne({ _id }).exec();
+}
+
 module.exports = {
-    /**
-     * @exports
-     * @method findAll
-     * @param {}
-     * @summary get list of all users
-     * @returns Promise<UserModel[]>
-     */
-    async findAll() {
-        return await UserModel.find({});
-    },
-
-    /**
-     * @exports
-     * @method findUser
-     * @param {string} userEmail
-     * @summary get user
-     * @returns Promise<UserModel[]>
-     */
-    async findUser(userEmail) {
-        return await UserModel.find({email: userEmail});
-    },
-
-    /**
-     * @exports
-     * @method createUser
-     * @param {string} userEmail
-     * @param {string} userName
-     * @summary create user
-     * @returns Promise<UserModel[]>
-     */
-    async createUser(userEmail, userName) {
-        let newUser = new UserModel({email: userEmail, fullName: userName});
-        newUser.save((err) => {
-            if (err) return console.error(err);
-        });
-        return newUser;
-    },
-
-    /**
-     * @exports
-     * @method updateUser
-     * @param {string} userEmail
-     * @param {string} userName
-     * @summary update user
-     * @returns Promise<UserModel[]>
-     */
-    async updateUser(userEmail, userName) {
-        return await UserModel.findOneAndUpdate({email: userEmail}, {fullName: userName}, {
-            new: true
-        }, (err) => {
-            if (err) return console.error(err);
-        });
-    },
-
-    /**
-     * @exports
-     * @method deleteUser
-     * @param {string} userEmail
-     * @summary delete user
-     * @returns Promise<UserModel[]>
-     */
-    async deleteUser(userEmail) {
-        return await UserModel.deleteOne({email: userEmail}, (err) => {
-            if (err) return console.error(err);
-        });
-    }
+    findAll,
+    findById,
+    create,
+    updateById,
+    deleteById,
 };

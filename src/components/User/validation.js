@@ -1,76 +1,74 @@
-const Joi = require('@hapi/joi');
+const Validation = require('../validation');
 
-const schema = Joi.object({
-    username: Joi.string()
-        .min(3)
-        .max(30)
-        .regex(/^[A-Z][a-z]+(\s[A-Z][a-z]+)$/)
-        .required(),
-
-    email: Joi.string()
-        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
-        .required()
-});
-
-const emailSchema = Joi.object({
-    email: Joi.string()
-        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
-        .required()
-});
-
-const usernameSchema = Joi.object({
-    username: Joi.string()
-        .min(3)
-        .max(30)
-        .regex(/^[A-Z][a-z]+(\s[A-Z][a-z]+)$/)
-        .required(),
-});
-
-module.exports = {
+/**
+ * @exports
+ * @class
+ * @extends Validation
+ */
+class UserValidation extends Validation {
     /**
-     * @exports
-     * @method userValidator
-     * @param {string} userEmail
-     * @param {string} userName
-     * @summary user data validation
-     * @returns {object} err
+     * @param {String} data.id - objectId
+     * @returns
+     * @memberof UserValidation
      */
-    async userValidator(userEmail, userName) {
-        try {
-            const value = await schema.validateAsync({ email: userEmail, username: userName });
-        } catch (err) { 
-            return err
-        }
-    },
+    findById(data) {
+        return this.Joi
+            .object({
+                id: this.Joi.objectId(),
+            })
+            .validate(data);
+    }
 
     /**
-     * @exports
-     * @method emailValidator
-     * @param {string} userEmail
-     * @param {string} userName
-     * @summary email validation
-     * @returns {object} err
+     * @param {String} profile.email
+     * @param {String} profile.fullName
+     * @returns
+     * @memberof UserValidation
      */
-    async emailValidator(userEmail) {
-        try {
-            const value = await emailSchema.validateAsync({ email: userEmail});
-        } catch (err) { 
-            return err
-        }
-    },
+    create(profile) {
+        return this.Joi
+            .object({
+                email: this.Joi.string().email(),
+                fullName: this.Joi
+                    .string()
+                    .min(1)
+                    .max(30)
+                    .required(),
+            })
+            .validate(profile);
+    }
 
     /**
-     * @exports
-     * @method userNameValidator
-     * @param {string} userName
-     * @summary username validation
-     * @returns {object} err
+     * @param {String} data.id - objectId
+     * @param {String} data.fullName
+     * @returns
+     * @memberof UserValidation
      */
-    async usernameValidator(userName) {
-        try {
-            const value = await usernameSchema.validateAsync({ username: userName });
-        } catch (err) { 
-            return err
-        }
-    },
+    updateById(data) {
+        return this.Joi
+            .object({
+                id: this.Joi.objectId(),
+                fullName: this.Joi
+                    .string()
+                    .min(1)
+                    .max(30)
+                    .required(),
+            })
+            .validate(data);
+    }
+
+    /**
+     * @param {String} data.id - objectId
+     * @returns
+     * @memberof UserValidation
+     */
+    deleteById(data) {
+        return this.Joi
+            .object({
+                id: this.Joi.objectId(),
+            })
+            .validate(data);
+    }
 }
+
+module.exports = new UserValidation();

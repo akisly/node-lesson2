@@ -1,4 +1,5 @@
 const bodyParser = require('body-parser');
+const path = require('path');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -13,9 +14,14 @@ module.exports = {
      * @returns void
      */
     init(app) {
-        app.use(bodyParser.urlencoded({
-            extended: true
-        }));
+        app.use(express.static(path.join(process.cwd() + '/src/public')));
+        app.set('view engine', 'ejs');
+        app.set('views', path.join(process.cwd() + '/src/views'));
+        app.use(
+            bodyParser.urlencoded({
+                extended: true
+            }),
+        );
         app.use(bodyParser.json());
         // parse Cookie header and populate req.cookies with an object keyed by the cookie names.
         app.use(cookieParser());

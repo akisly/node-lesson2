@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="container">
+      <div class="users-wraper">
+        <div class="users-wraper__top">
+          <form action="/users/create" method="POST">
+            <button>Add</button>
+          </form>
+        </div><!-- users-wraper__top -->
+        <div class="users-wraper__table">
+          <div class="table-head">
+            <div class="number"><span>#</span></div>
+            <div class="email"><span>E-mail</span></div>
+            <div class="name"><span>Full name</span></div>
+            <div class="update"></div>
+            <div class="delete"></div>
+          </div>
+          <% if(users !== null) {  %>
+            <div class="table-body">
+            <% users.forEach((element, index) => { %>
+              <div class="table-item">
+                <form action="/users/update" method="post">
+                  <div class="number"><span><%= index + 1 %></span></div>
+                  <input id="id" name="id" type="hidden" value="<%= element._id %>">
+                  <div class="email"><input id="email" name="email" type="email" value="<%= element.email %>" readonly></div>
+                  <div class="name"><input id="fullName" name="fullName" type="text" value="<%= element.fullName %>" readonly></div>
+                  <div class="update"><button>update</button></div>
+                </form>
+                <form action="/v1/users/delete" method="post">
+                  <input id="id" name="id" type="hidden" value="<%= element._id %>">
+                  <button>delete</button>
+                </form>
+              </div>
+            <% }); %>
+            </div>
+          <% }; %>
+        </div><!-- users-wraper__table -->
+      </div><!-- users-wraper -->
+    </div><!-- container -->
+    <% if(popup === 'create') {  %>
+      <%- include('./partials/popup-create'); %>
+    <% } else if(popup === 'update') { %>
+      <%- include('./partials/popup-update'); %>
+    <% } %>
+  </body>
+</html>

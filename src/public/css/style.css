@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    height: 100vh;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.users-wraper {
+    padding-top: 50px;
+}
+
+.users-wraper__table {
+    border: 1px solid #d0d9e3;
+}
+
+.users-wraper__top {
+    margin-bottom: 40px;
+}
+
+.users-wraper__top form {
+    text-align: end;
+}
+
+.table-head {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    /* width: calc(100% - 130px); */
+    background-color: #eff2f7;
+}
+
+.table-item {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    border-top: 1px solid #d0d9e3;
+}
+
+.table-item:nth-of-type(2n) {
+    background-color: #f9fafc;
+}
+
+.table-item input {
+    text-align: center;
+    border: 0;
+    background: transparent;
+    width: 100%;
+}
+
+.table-item form:first-of-type {
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
+}
+
+.table-item form:last-of-type {
+    width: 15%;
+    max-width: 130px;
+    text-align: center;
+}
+
+.table-item form:last-of-type button {
+    color: #ef6f75;
+}
+
+.email, .name, .number, .update {
+    text-align: center;
+}
+
+.update button {
+    color: #30b3fb;
+}
+
+.number {
+    width: 10%;
+}
+
+.update, .delete {
+    width: 15%;
+}
+
+.email, .name {
+    width: 30%;
+}
+
+.users-wraper__top button {
+    background-color: #0fa4fb;
+    border-radius: 3px;
+    padding: 10px 25px;
+    color: white;
+}
+
+.popup {
+    position: fixed; 
+    content: ''; 
+    top: 0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0; 
+    background: rgba(0,0,0, 0.3);
+}
+
+.create-user, .update-user {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px; 
+    height: 650px; 
+    background: white; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.create-user form, .update-user form {
+    display: flex;
+    flex-direction: column; 
+    width: 100%; 
+    max-width: 280px;
+}
+
+.popup form input {
+    height: 35px;
+    margin-bottom: 10px;
+}
+
+.popup form button {
+    height: 35px; 
+    margin-top: 10px;
+    background-color: #0fa4fb;
+    border-radius: 3px;
+    padding: 10px 25px;
+    color: white;
+}
