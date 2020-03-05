@@ -28,13 +28,13 @@
               <div class="table-item">
                 <form action="/users/update" method="post">
                   <div class="number"><span><%= index + 1 %></span></div>
-                  <input id="id" name="id" type="hidden" value="<%= element._id %>">
-                  <div class="email"><input id="email" name="email" type="email" value="<%= element.email %>" readonly></div>
-                  <div class="name"><input id="fullName" name="fullName" type="text" value="<%= element.fullName %>" readonly></div>
+                  <input class="id" name="id" type="hidden" value="<%= element._id %>">
+                  <div class="email"><input class="email-input" name="email" type="email" value="<%= element.email %>" readonly></div>
+                  <div class="name"><input name="fullName" type="text" value="<%= element.fullName %>" readonly></div>
                   <div class="update"><button>update</button></div>
                 </form>
                 <form action="/v1/users/delete" method="post">
-                  <input id="id" name="id" type="hidden" value="<%= element._id %>">
+                  <input class="id" name="id" type="hidden" value="<%= element._id %>">
                   <button>delete</button>
                 </form>
               </div>
