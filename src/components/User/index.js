@@ -9,6 +9,63 @@ const ValidationError = require('../../error/ValidationError');
  * @param {express.NextFunction} next
  * @returns {Promise < void >}
  */
+async function usersPage(req, res, next) {
+    try {
+        const users = await UserService.findAll();
+
+        res.render('users', {users: users, popup: null});
+    } catch (error) {
+        res.render('users', {users: null, popup: null});
+
+        next(error);
+    }
+}
+
+/**
+ * @function
+ * @param {express.Request} req
+ * @param {express.Response} res
+ * @param {express.NextFunction} next
+ * @returns {Promise < void >}
+ */
+async function popupCreate(req, res, next) {
+    try {
+        const users = await UserService.findAll();
+
+        res.render('users', {users: users, popup: 'create'});
+    } catch (error) {
+        res.render('users', {users: null, popup: null});
+
+        next(error);
+    }
+}
+
+/**
+ * @function
+ * @param {express.Request} req
+ * @param {express.Response} res
+ * @param {express.NextFunction} next
+ * @returns {Promise < void >}
+ */
+async function popupUpdate(req, res, next) {
+    try {
+        const users = await UserService.findAll();
+
+        res.render('users', {users: users, popup: 'update', id: req.body.id});
+    } catch (error) {
+        res.render('users', {users: null, popup: null});
+
+        next(error);
+    }
+}
+
+/**
+ * @function
+ * @param {express.Request} req
+ * @param {express.Response} res
+ * @param {express.NextFunction} next
+ * @returns {Promise < void >}
+ */
 async function findAll(req, res, next) {
     try {
         const users = await UserService.findAll();
@@ -169,6 +226,9 @@ async function deleteById(req, res, next) {
 }
 
 module.exports = {
+    usersPage,
+    popupCreate,
+    popupUpdate,
     findAll,
     findById,
     create,
