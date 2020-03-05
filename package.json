@@ -6,7 +6,10 @@
         "lesson2"
     ],
     "author": "Checha Valerii <chechavalera@gmail.com>",
-    "scripts": {},
+    "scripts": {
+        "screenshot": "node src/puppeteer/screenshot/index.js",
+        "grabbingEmails": "node src/puppeteer/grabbing/index.js"
+    },
     "dependencies": {
         "@hapi/joi": "^17.1.0",
         "body-parser": "1.18.2",
@@ -15,7 +18,17 @@
         "cors": "2.8.5",
         "ejs": "^3.0.1",
         "express": "4.16.2",
+        "googleapis": "^39.2.0",
         "helmet": "^3.21.2",
-        "mongoose": "5.7.5"
+        "mongoose": "5.7.5",
+        "puppeteer": "^2.1.1"
+    },
+    "devDependencies": {
+        "cz-conventional-changelog": "^3.1.0"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
     }
 }
