@@ -1,6 +1,6 @@
 class ColoredTriangle {
     constructor() {
-        this.red = 'color';
+        this.red = "color";
     }
 }
 

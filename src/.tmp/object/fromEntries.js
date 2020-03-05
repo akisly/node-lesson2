@@ -1,9 +1,9 @@
 const object = {
-    a: 'somestring',
+    a: "somestring",
     b: 42,
     c: false,
-    k: 'k',
-    yay: 'yay',
+    k: "k",
+    yay: "yay"
 };
 const same = [];
 

@@ -1,10 +1,11 @@
 const object = {
-    a: 'somestring',
+    a: "somestring",
     b: 42,
     c: false,
-    k: 'k',
-    yay: 'yay',
+    k: "k",
+    yay: "yay"
 };
+
 const same = [];
 
 Object.entries(object).forEach(([key, value]) => {
@@ -15,5 +16,5 @@ Object.entries(object).forEach(([key, value]) => {
 
 const map = new Map(same);
 
-console.log(map.get('yay'));
+console.log(map.get("yay"));
 // expected output: String 'yay'
