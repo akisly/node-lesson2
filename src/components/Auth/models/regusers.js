@@ -14,7 +14,7 @@ const RegisterUserSchema = new Schema(
         }
     },
     {
-        collection: "systemusers",
+        collection: "registerusers",
         versionKey: false
     }
 );
