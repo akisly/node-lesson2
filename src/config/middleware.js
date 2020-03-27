@@ -1,10 +1,11 @@
-const bodyParser = require('body-parser');
-const path = require('path');
-const compression = require('compression');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
-const express = require('express');
-const helmet = require('helmet');
+require("dotenv").config();
+const bodyParser = require("body-parser");
+const path = require("path");
+const compression = require("compression");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const express = require("express");
+const helmet = require("helmet");
 
 module.exports = {
     /**
@@ -14,13 +15,13 @@ module.exports = {
      * @returns void
      */
     init(app) {
-        app.use(express.static(path.join(process.cwd() + '/src/public')));
-        app.set('view engine', 'ejs');
-        app.set('views', path.join(process.cwd() + '/src/views'));
+        app.use(express.static(path.join(process.cwd() + "/src/public")));
+        app.set("view engine", "ejs");
+        app.set("views", path.join(process.cwd() + "/src/views"));
         app.use(
             bodyParser.urlencoded({
                 extended: true
-            }),
+            })
         );
         app.use(bodyParser.json());
         // parse Cookie header and populate req.cookies with an object keyed by the cookie names.
@@ -33,16 +34,19 @@ module.exports = {
         app.use(cors());
         // cors
         app.use((req, res, next) => {
-            res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS ');
             res.header(
-                'Access-Control-Allow-Headers',
-                'Origin, X-Requested-With,' +
-                ' Content-Type, Accept,' +
-                ' Authorization,' +
-                ' Access-Control-Allow-Credentials'
+                "Access-Control-Allow-Methods",
+                "GET, POST, PUT, DELETE, OPTIONS "
             );
-            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header(
+                "Access-Control-Allow-Headers",
+                "Origin, X-Requested-With," +
+                    " Content-Type, Accept," +
+                    " Authorization," +
+                    " Access-Control-Allow-Credentials"
+            );
+            res.header("Access-Control-Allow-Credentials", "true");
             next();
         });
     }
-}
+};

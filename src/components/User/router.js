@@ -67,7 +67,7 @@ router.get("/:id", UserComponent.findById);
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware
  */
-router.post("/", UserComponent.create);
+router.post("/", UserComponent.createUser);
 
 /**
  * Route serving a new user
@@ -107,7 +107,7 @@ router.post("/delete", UserComponent.deleteById);
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware
  */
-router.put("/", UserComponent.updateById);
+router.put("/", UserComponent.updateByIdAPI);
 
 /**
  * Route serving a delete user
@@ -117,7 +117,7 @@ router.put("/", UserComponent.updateById);
  * @param {string} path -Express path
  * @param {callback} middleware - Express middleware
  */
-router.delete("/", UserComponent.deleteById);
+router.delete("/", UserComponent.deleteByIdAPI);
 
 module.exports = {
     router,
