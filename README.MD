@@ -23,7 +23,7 @@
     curl --location --request POST 'localhost:3000/v1/auth/delete' \
     --header 'Content-Type: application/json' \
     --data-raw '{
-        "_id_": "..."
+        "_id": "..."
     }'
 ```
 
