@@ -1,9 +1,67 @@
 ### Validation
+
 ```
     https://hapi.dev/family/joi/
 ```
 
+# Auth
+
+### Register User
+
+```
+    curl --location --request POST 'localhost:3000/v1/auth/register' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "email": "test@gmail.com",
+        "password": "12345678"
+    }'
+```
+
+### Delete User
+
+```
+    curl --location --request POST 'localhost:3000/v1/auth/delete' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "_id_": "..."
+    }'
+```
+
+### Login
+
+```
+    curl --location --request POST 'localhost:3000/v1/auth/login' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "email": "test@gmail.com",
+        "password": "12345678"
+    }'
+```
+
+### Logout
+
+```
+    curl --location --request POST 'localhost:3000/v1/auth/login' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "refreshToken": "..."
+    }'
+```
+
+### Refresh tokens
+
+```
+    curl --location --request POST 'localhost:3000/v1/auth/refresh-tokens' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "refreshToken": "..."
+    }'
+```
+
+# User
+
 ### Find User
+
 ```
     curl --location --request GET 'localhost:3000/v1/users/find' \
     --header 'Content-Type: application/json' \
@@ -13,6 +71,7 @@
 ```
 
 ### Create User
+
 ```
     curl --location --request POST 'localhost:3000/v1/users/create' \
     --header 'Content-Type: application/json' \
@@ -23,6 +82,7 @@
 ```
 
 ### Update User
+
 ```
     curl --location --request PUT 'localhost:3000/v1/users/update' \
     --header 'Content-Type: application/json' \
@@ -32,6 +92,7 @@
 ```
 
 ### Delete User
+
 ```
     curl --location --request DELETE 'localhost:3000/v1/users/delete' \
     --header 'Content-Type: application/json' \
